@@ -8,7 +8,7 @@ The Cloud Resume Challenge provided an excellent opportunity to delve into vario
 
 ## Architecture
 
-The architectural diagram below explains how different services and tools used for this project connect with each other.
+The architectural diagram below explains how different services and tools used for this project connect with each other. Please zoom out to view clearly.
 
 ![cloud-resume-challenge-architecture](img/cloud-resume-challenge-architecture.png)
 
