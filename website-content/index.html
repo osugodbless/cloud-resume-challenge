@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>godblessosu.com</title>
+    
+    <!-- Link Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- My custom CSS file -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+
+    <script>
+        fetch('https://ryjqiza7hl.execute-api.us-east-1.amazonaws.com/Prod/post-count', {
+            method: 'POST',
+        })
+        .then(() => fetch('https://ryjqiza7hl.execute-api.us-east-1.amazonaws.com/Prod/get-count'))
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch visitor count');
+            }
+            return response.text(); // Parse response as text
+        })
+        .then(data => {
+            // Display visitor count on webpage
+            document.getElementById('visitorCount').innerText = `${data}`;
+        })
+        .catch(error => {
+            console.error('Error fetching visitor count:', error);
+        });
+    </script>
+    
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav data-test="navbar">
+                <ul>
+                    <li data-test="home" class="active current"><a href="#home">Home</a></li>
+                    <li data-test="about"><a href="#about">About</a></li>
+                    <li data-test="skills"><a href="#skills">Skills</a></li>
+                    <li data-test="projects"><a href="#projects">Projects</a></li>
+                    <li data-test="education"><a href="#education">Education & Certifications</a></li>
+                    <li data-test="contact"><a href="#contact">Contact</a></li>
+                    <li><a data-test="blog-link" href="https://dev.to/osugodbless" target="_blank">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="container content">
+            <h4><span class="highlight">Hello, I'm</span></h4>
+            <h2 class="h2_enlarge">Godbless Lucky Osu...</h2>
+            <p class="role">DevOps & Cloud Engineer</p>
+        
+            <ul data-test="home-section-icons">
+                <a data-test="home-section-linkedin-icon" href="https://linkedin.com/in/osugodbless/" target="_blank"><li class="icon"><span class="icon-hover"><i class="fa-brands fa-linkedin fa-2x"></i></span></li></a>
+                <a data-test="home-section-github-icon" href="https://github.com/osugodbless" target="_blank"><li class="icon"><span class="icon-hover"><i class="fa-brands fa-github fa-2x"></i></span></li></a>
+            </ul>
+        </div>
+    </section>
+
+<section id="about">
+    <div class="about-me">
+        <article id="main-col">
+            <a data-test="resume-link" href="https://drive.google.com/file/d/1CqwFwkbd555jWt4MeoLAL58-9ijfEEu5/view?usp=sharing"><button data-test="resume-button" class="button_1">View Resume</button></a>
+            <h2>About Me</h2>
+        <p class="dark">Hi there, I'm Godbless, a dynamic Cloud Engineer and DevOps enthusiast driven by a profound enthusiasm for harnessing technology to solve complex problems. I first became interested in tech when I took an introductory HTML & CSS course during my time as a molecular laboratory intern. 
+            <br><br><span>Driven by a relentless pursuit of growth, I enrolled and graduated from the African Leadership Xcelerator (ALX), a company dedicated to delivering world-class tech training to millions of people in Africa.  As a result, I am proud to hold the AWS Solutions Architect certification, a testament to my commitment to mastering cloud technologies. Currently, I am on a quest to gain more hands-on experience with various cloud technologies and subsequently, achieve more certifications like the AWS Certified Developer Associate certification. This is to further solidify my expertise in cloud development. Ultimately, I aim to optimize operations, enhance security measures, and drive scalable growth for businesses.</span> 
+            <br><br><span>Engage with my elevator pitch that captures my journey, skills and vision, and see below some notable projects I've championed or participated in. Also, see my contact section to connect with me, Let's explore possibilities and build solutions together!</span></p>
+        </article>
+        
+        <aside id="sidebar">
+            <iframe width="460" height="315" src="https://www.youtube.com/embed/umhlgz1TDLI?si=LtXrhsq1-yfKN1AB" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </aside>
+    </div>
+    
+</section>
+
+<section id="skills" class="skill-area">
+    <div class="content">
+        <div class="section-header">
+            <h2>My Skillset</h2>
+        </div>
+
+        <div class="wrapper custom">
+            <div class="skill-box">
+                <h4 class="title-area">Technical Skills</h4>
+    
+                <div class="single-skill">
+                    <span class="topic">HTML5</span>
+                    <span class="percent">90%</span>
+                    <span class="bar bar-1"></span>
+                </div>
+    
+                <div class="single-skill">
+                    <span class="topic">CSS3</span>
+                    <span class="percent">50%</span>
+                    <span class="bar bar-2"></span>
+                </div>
+    
+                <div class="single-skill">
+                    <span class="topic">Wix</span>
+                    <span class="percent">90%</span>
+                    <span class="bar bar-3"></span>
+                </div>
+    
+                <div class="single-skill">
+                    <span class="topic">Cloud (AWS)</span>
+                    <span class="percent">70%</span>
+                    <span class="bar bar-4"></span>
+                </div>
+    
+                <div class="single-skill">
+                    <span class="topic">Liux/Bash</span>
+                    <span class="percent">40%</span>
+                    <span class="bar bar-5"></span>
+                </div>
+    
+                <div class="single-skill">
+                    <span class="topic">Git</span>
+                    <span class="percent">40%</span>
+                    <span class="bar bar-6"></span>
+                </div>
+    
+                <div class="single-skill">
+                    <span class="topic">Microsoft Office suite</span>
+                    <span class="percent">90%</span>
+                    <span class="bar bar-7"></span>
+                </div>
+    
+                <div class="single-skill">
+                    <span class="topic">Google WorkSpace</span>
+                    <span class="percent">90%</span>
+                    <span class="bar bar-8"></span>
+                </div>
+            </div>
+
+            <div class="skill-box">
+                <h4 class="title-area">Soft Skills</h4>
+        
+                <div class="single-skill">
+                    <span class="topic">Personal Motivation</span>
+                    <span class="percent">95%</span>
+                    <span class="bar bar-9"></span>
+                </div>
+        
+                <div class="single-skill">
+                    <span class="topic">Emotional Intelligence</span>
+                    <span class="percent">90%</span>
+                    <span class="bar bar-10"></span>
+                </div>
+        
+                <div class="single-skill">
+                    <span class="topic">Team Collaboration</span>
+                    <span class="percent">95%</span>
+                    <span class="bar bar-11"></span>
+                </div>
+        
+                <div class="single-skill">
+                    <span class="topic">Critical Thinking</span>
+                    <span class="percent">85%</span>
+                    <span class="bar bar-12"></span>
+                </div>
+        
+                <div class="single-skill">
+                    <span class="topic">Attention To Detail</span>
+                    <span class="percent">90%</span>
+                    <span class="bar bar-13"></span>
+                </div>
+        
+                <div class="single-skill">
+                    <span class="topic">Communication</span>
+                    <span class="percent">80%</span>
+                    <span class="bar bar-14"></span>
+                </div>
+        
+                <div class="single-skill">
+                    <span class="topic">Problem-Solving</span>
+                    <span class="percent">90%</span>
+                    <span class="bar bar-15"></span>
+                </div>
+        
+                <div class="single-skill">
+                    <span class="topic">Willingness To Learn</span>
+                    <span class="percent">95%</span>
+                    <span class="bar bar-16"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects">
+    <h2 class="page-title">Projects</h2>
+    <div class="main-projects">
+        <article id="" class="all-projects projectone">
+            <a data-test="project-one" href="https://github.com/osugodbless/cloud-resume-challenge.git" target="_blank">
+                <h4 class="article-title">Cloud Resume Challenge</h4>
+                <p style="color: #333;">Following the footsteps of Forrest Brazeal's visionary challenge, this very website was created. The challenge isn't a 'how-to' guide but rather takes a project-spec approach. At the end of the challenge, I understood more about the full-stack software development process, version control, continuous integration and delivery, cloud services and serverless, application security, and networking. Most importantly, through the challenge, I became confident in my ability to learn fast and google well.</p>
+                <p style="color: #333;"><strong>Technologies and Services:</strong> HTML, CSS, JavaScript, AWS S3, Amazon CloudFront, AWS Certificate Manager, AWS Lambda, Amazon DynamoDB, Amazon Route 53, AWS API Gateway, GitHub Actions, AWS SAM</p>
+            </a>
+        </article>
+    
+        <article id="" class="all-projects projecttwo">
+            <a data-test="project-two" href="https://youtu.be/E6wFN9t78Yg" target="_blank">
+                <h4 class="article-title">TripPlanner App Design</h4>
+                <p>Under the guidance of ALX's experts, our team focused on developing a solution for the problem of ineffective transportation associated with rapid urbanization. We conducted some additional research on this problem and also created some visualizations of data that illustrates the problem, its impact, and its projected trend. Through our brainstorming and ideation session as a team, we came up with the viable solution of developing an app that helps commuters plan and schedule their daily trips. We believed this would decrease travel time and as a result also reduce operational cost for transport companies. Together, we carried out extensive research and worked to create wireframes for the TripPlanner app. Lastly, we created a video showcasing our work and made a pitch for our proposed next steps of development</p>
+                <p>As the team's UX Researcher and UI/UX Designer, I carefully designed questionnaires for user interviews aimed at understanding user behaviors, needs and preferences. I gathered insights and designed the user interface to be aesthetically pleasing and user-friendly, while also considering the user experience to ensure seamless interactions and intuitive navigation</p>
+            </a>
+        </article>
+    </div>
+    
+
+</section>
+
+<section id="education">
+    <h2 class="page-title">Education & Certifications</h2>
+    <div class="main-certifications">
+        <div class="">
+            <p class="saa-certification"><strong>AWS Certified Solutions Architect - Associate</strong><br> Validation Number: 9d61e5ee697540cfac01010896d76eaa <br>
+                <a data-test="cloud-saa" href="https://aws.amazon.com/verification" target="_blank"><img src="./img/cloud-saa.jpg" alt="Solutions Architect Certification"></a>
+            </p>
+        </div>
+        
+        <div class="">
+            <p class="practitioner-certification"><strong>AWS Certified Cloud Practitioner</strong><br>Validation Number: FCHKGN0K81VQQB9H <br>
+                <a data-test="cloud-practitioner" href="https://aws.amazon.com/verification" target="_blank"><img src="./img/cloud-practitioner.jpg" alt="Cloud Practitioner Certification"></a>
+            </p>
+        </div>
+    </div>
+
+<div class="row">
+    <div class="tech-education customize">
+        <p>
+            <h4 class="article-title"><span style="color: black;">AWS Cloud Computing — </span>African Leadership Xcelerator (ALX)</h4>
+            <em>May 2023 - February 2024</em>
+        </p>
+        <p>Completed a comprehensive 3-month Tech Foundation course, gaining knowledge in problem-solving frameworks, critical thinking, agile methodologies, human-centered design, collaboration, communication in the tech ecosystem, and understanding global challenges and opportunities.</p>
+        <p>The AWS cloud study module consists of: AWS compute layer, storage layer, databases layer, creating and connecting networks, containers, caching monitoring, CI/CD, analytics, event-driven architecture, migration, building decoupled architectures, building microservices & serverless architectures, securing user & apllication access, implementing elasticity and high availability, automating of architectures, planning for disaster, hands-on labs...</p>
+    </div>
+    
+    <div class="tech-education customize2">
+
+        <p>
+            <h4 class="article-title"><span style="color: black;">Medical Biochemistry & Genetics — </span>Delta State University</h4>
+            <em>2018 - 2022</em>  
+        </p>
+        <p>B.Sc in Medical Biochemistry</p>
+    </div>
+</div>
+
+
+</section>
+
+<section id="contact">
+    <h3>Let's connect and explore the boundless possibilities of cloud technology and create innovative solutions together</h3>
+
+    <div class="contact-container">
+        <form action="" class="contact-left">
+            <div class="contact-left-title">
+                <h1>Get in touch</h1>
+                <hr>
+            </div>
+            
+            <input type="text" name="name" placeholder="Your Name" class="contact-inputs" required>
+            <input data-test="contact-input-email" type="email" name="email" placeholder="Your Email..." class="contact-inputs" required>
+            <textarea name="message" placeholder="Your Message" class="contact-inputs" required></textarea>
+            <button type="submit" class="button_1">Submit</button>
+        </form>
+        <div class="contact-right">
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <ul data-test="footer-section-icons">
+        <p>Superb visitor😍: <div id="visitorCount"></div></p>
+        <a data-test="footer-section-linkedin-icon" href="https://linkedin.com/in/osugodbless/" target="_blank"><li class="icon"><span class="icon-hover"><i class="fa-brands fa-linkedin fa-2x"></i></span></li></a>
+        <a data-test="footer-section-github-icon" href="https://github.com/osugodbless" target="_blank"><li class="icon"><span class="icon-hover"><i class="fa-brands fa-github fa-2x"></i></span></li></a>
+    </ul>
+    <p>All rights reserved &copy; Godbless 2024</p>
+</footer>
+
+</body>
+</html>

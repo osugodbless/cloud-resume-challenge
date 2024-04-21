@@ -1,0 +1,22 @@
+{
+  "name": "cloud-resume-challenge",
+  "version": "1.0.0",
+  "description": "cloud resume challenge to gain experience and build my portfolio",
+  "main": "index.html",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "godbless",
+    "cloud-resume-challenge"
+  ],
+  "author": "\"Godbless Lucky Osu\"",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cypress": "^13.7.2",
+    "cypress-plugin-api": "^2.11.1"
+  }
+}

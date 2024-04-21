@@ -1,0 +1,322 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  cloud-resume-challenge
+
+  Sample SAM Template for cloud-resume-challenge
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+
+    Tracing: Active
+    # You can add LoggingConfig parameters such as the Logformat, Log Group, and SystemLogLevel or ApplicationLogLevel. Learn more here https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-function.html#sam-function-loggingconfig.
+    LoggingConfig:
+      LogFormat: JSON
+  Api:
+    TracingEnabled: true
+
+Parameters:
+  DomainName:
+    Description: Apex domain
+    Type: String
+    Default: osu-resume.com.ng
+  
+Resources:
+  MyWebsiteBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: cloud-resume-website-v1
+      PublicAccessBlockConfiguration:
+          BlockPublicAcls: false
+          BlockPublicPolicy: false
+          IgnorePublicAcls: false
+          RestrictPublicBuckets: false
+      Tags:
+        - Key: CloudResume
+          Value: frontend
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      PolicyDocument:
+        Id: WebsitePolicy
+        Version: 2012-10-17
+        Statement:
+          - Sid: PublicReadForGetBucketObjects
+            Effect: Allow
+            Principal:
+              Service: 'cloudfront.amazonaws.com'
+            Action: "s3:GetObject"
+            Resource: !Join
+              - ""
+              - - "arn:aws:s3:::"
+                - !Ref MyWebsiteBucket
+                - /*
+            Condition:
+              StringEquals:
+                'AWS:SourceArn': !Sub 'arn:aws:cloudfront::${AWS::AccountId}:distribution/${CloudFrontDistribution}'
+      Bucket: !Ref MyWebsiteBucket
+
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+          - !Sub '${DomainName}'
+        DefaultCacheBehavior:
+          Compress: true
+          DefaultTTL: 0
+          MinTTL: 0
+          MaxTTL: 0
+          ForwardedValues:
+            QueryString: true
+          TargetOriginId: !Sub 'S3-${AWS::StackName}-root'
+          ViewerProtocolPolicy: 'redirect-to-https'
+        Enabled: true
+        HttpVersion: 'http2'
+        DefaultRootObject: 'index.html'
+        IPV6Enabled: true
+        Origins:
+          - DomainName: !GetAtt MyWebsiteBucket.DomainName
+            Id: !Sub 'S3-${AWS::StackName}-root'
+            OriginAccessControlId: !Ref OriginAccessControl
+            S3OriginConfig: {}
+        PriceClass: 'PriceClass_All'
+        ViewerCertificate:
+          AcmCertificateArn: !Ref StackCertificate
+          MinimumProtocolVersion: 'TLSv1.2_2021'
+          SslSupportMethod: 'sni-only'
+      Tags:
+        - Key: CloudResume
+          Value: frontend
+
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub
+          - cr-secure-static-site-${guid}
+          - guid: !Select [2, !Split ['/', !Ref 'AWS::StackId']]
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  Route53RecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: Z02431101O6US6X5KUA7C
+      Name: !Sub '${DomainName}'
+      Type: 'A'
+      AliasTarget:
+        DNSName: !GetAtt CloudFrontDistribution.DomainName
+        EvaluateTargetHealth: false
+        HostedZoneId: Z2FDTNDATAQYW2
+
+  StackCertificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Sub '${DomainName}'
+      DomainValidationOptions:
+        - DomainName: !Sub '${DomainName}'
+          HostedZoneId: Z02431101O6US6X5KUA7C
+      ValidationMethod: DNS
+
+  CountGetFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: get-count/
+      Handler: app.lambda_handler
+      Runtime: python3.12
+      Architectures:
+      - x86_64
+      Policies:
+        - DynamoDBReadPolicy:
+            TableName: !Ref DynamoCountTable
+      Events:
+        VisitorCount:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /get-count
+            Method: get
+
+  CountPostFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: put-count/
+      Handler: app.lambda_handler
+      Runtime: python3.12
+      Architectures:
+      - x86_64
+      Policies:
+        - DynamoDBWritePolicy:
+            TableName: !Ref DynamoCountTable
+      Events:
+        VisitorCount:
+          Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
+          Properties:
+            Path: /post-count
+            Method: post
+
+  SlackAlarmFunction:
+    Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
+    Properties:
+      CodeUri: slack-function/
+      Handler: app.lambda_handler
+      Runtime: python3.12
+      Architectures:
+      - x86_64
+      Policies:
+        - SSMParameterReadPolicy:
+            ParameterName: !Ref SlackParameter
+      Events:
+        SnsTopicEvent:
+          Type: SNS
+          Properties:
+            Topic: !Ref AlarmSNSTopic
+            
+  DynamoCountTable:
+    Type: AWS::Serverless::SimpleTable
+    Properties:
+      TableName: Count_Table
+      PrimaryKey:
+        Name: Count
+        Type: String
+      SSESpecification:
+        SSEEnabled: false
+      Tags:
+        CloudResume: frontend
+
+  LambdaGetErrorAlarm:
+    Type: "AWS::CloudWatch::Alarm"
+    Properties:
+      AlarmDescription: 'Lambda Error Alarm for Cloud Resume Get functions'
+      AlarmName: 'Lambda-Get-Error-Alarm'
+      ActionsEnabled: true
+      AlarmActions:
+        - !Ref AlarmSNSTopic
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      Threshold: 3
+      DatapointsToAlarm: 2  #datapoints are the values of the metric collected by cloudwatch at the set time interval. This datapoint is what is used to determine whether the alarm should be triggered.
+      EvaluationPeriods: 5  # Based on the period of 60s in this template, this evaluation period specifies 5 periods of 1 minute (60s) each for evaluation
+      TreatMissingData: notBreaching
+      MetricName: "Errors"
+      Namespace: "AWS/Lambda"
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref CountGetFunction
+        - Name: Resource
+          Value: !Ref CountGetFunction
+      Period: 60  # Specifies a period of 60 seconds (1 minute)
+      Statistic: Sum
+
+  LambdaPostErrorAlarm:
+    Type: "AWS::CloudWatch::Alarm"
+    Properties:
+      AlarmDescription: 'Lambda Error Alarm for Cloud Resume Post functions'
+      AlarmName: 'Lambda-Post-Error-Alarm'
+      ActionsEnabled: true
+      AlarmActions:
+        - !Ref AlarmSNSTopic
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      Threshold: 3
+      DatapointsToAlarm: 2  #datapoints are the values of the metric collected by cloudwatch at the set time interval. This datapoint is what is used to determine whether the alarm should be triggered.
+      EvaluationPeriods: 5  # Based on the period of 60s in this template, this evaluation period specifies 5 periods of 1 minute (60s) each for evaluation
+      TreatMissingData: notBreaching
+      MetricName: "Errors"
+      Namespace: "AWS/Lambda"
+      Dimensions:
+        - Name: FunctionName
+          Value: !Ref CountPostFunction
+        - Name: Resource
+          Value: !Ref CountPostFunction
+      Period: 60  # Specifies a period of 60 seconds (1 minute)
+      Statistic: Sum
+
+  APILatencyAlarm:
+    Type: "AWS::CloudWatch::Alarm"
+    Properties:
+      AlarmDescription: 'API Gateway Latency Alarm for all stages of My API'
+      AlarmName: 'APIGateway-Latency-Alarm'
+      ActionsEnabled: true
+      AlarmActions:
+        - !Ref AlarmSNSTopic
+      ComparisonOperator: GreaterThanOrEqualToThreshold
+      Threshold: 800  # if the average latency of your API Gateway equals or exceeds 800 milliseconds over the specified evaluation period, the alarm will be triggered
+      DatapointsToAlarm: 2
+      EvaluationPeriods: 5
+      TreatMissingData: ignore
+      MetricName: "Latency"
+      Namespace: "AWS/ApiGateway"
+      Dimensions:
+        - Name: ApiName
+          Value: cloud-resume-challenge
+        - Name: Stage
+          Value: "Prod"
+      Period: 60
+      Statistic: Average
+
+  AlarmSNSTopic:
+    Type: AWS::SNS::Topic
+    Properties:
+      Subscription:
+        - Endpoint: 'https://events.pagerduty.com/integration/1ae375f43d114109d0e706a8795129a9/enqueue'
+          Protocol: https
+
+  SlackParameter:
+    Type: AWS::SSM::Parameter
+    Properties:
+      Name: webhookUrl
+      Type: String
+      Value: https://hooks.slack.com/services/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
+      Description: SSM Parameter used by my lambda function to post cloudwatch alarms to slack.
+      Tags:
+        CloudResume: slackparameter
+
+Outputs:
+  # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+  # Find out more about other implicit resources you can reference within SAM
+  # https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  VisitorCountApi:
+    Description: API Gateway endpoint URL for Prod stage for count get function
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/get-count/"
+  VisitorCountApi:
+    Description: API Gateway endpoint URL for Prod stage for count post function
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/post-count/"
+  CountGetFunction:
+    Description: Count Get Function ARN
+    Value: !GetAtt CountGetFunction.Arn
+  CountPostFunction:
+    Description: Count Post Function ARN
+    Value: !GetAtt CountPostFunction.Arn
+  SlackAlarmFunction:
+    Description: slack Alarm Function ARN
+    Value: !GetAtt SlackAlarmFunction.Arn
+  DynamoCountTable:
+    Description: Dynamo Count Table ARN
+    Value: !GetAtt DynamoCountTable.Arn
+  AlarmSNSTopic:
+    Description: ARN of Alarm SNS Topic
+    Value: !Ref AlarmSNSTopic
+  SlackParameter:
+    Description: ARN of Slack Parameter
+    Value: !Ref SlackParameter
+  StackCertificateArn:
+    Description: Issued certificate
+    Value: !Ref StackCertificate
+  CloudFrontDistribution:
+    Description: CloudFront distribution
+    Value: !GetAtt CloudFrontDistribution.DomainName
+  WebsiteDomainName:
+    Description: Website address
+    Value: !Sub '${DomainName}'       
+  MyWebsiteBucket:
+    Description: Website bucket
+    Value: !Ref MyWebsiteBucket
+  S3BucketName:
+    Description: Website bucket name
+    Value: !GetAtt MyWebsiteBucket.DomainName
+  S3BucketArn:
+    Description: Website bucket locator
+    Value: !GetAtt MyWebsiteBucket.Arn
