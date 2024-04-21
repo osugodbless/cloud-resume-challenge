@@ -38,7 +38,7 @@ The architectural diagram below explains how different services and tools used f
 
 ## AWS SAM Integration
 
-The application's resources are defined in the `template.yaml` file in this project, using the AWS Serverless Application Model (AWS SAM). AWS SAM is an extension of AWS CloudFormation that helps you define your application infrastructure code quickly, using less code. It is ,ainly used for building, deploying and monitoring serverless applications. Read more about AWS SAM [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html).
+The application's resources are defined in the `template.yaml` file in this project, using the AWS Serverless Application Model (AWS SAM). AWS SAM is an extension of AWS CloudFormation that helps you define your application infrastructure code quickly, using less code. It is mainly used for building, deploying and monitoring serverless applications. Read more about AWS SAM [here](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/what-is-sam.html).
 
 The repository also contains source codes and other supporting files for the serverless application that I deployed with the SAM CLI.
 
