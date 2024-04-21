@@ -169,7 +169,7 @@ Resources:
       - x86_64
       Policies:
         - SSMParameterReadPolicy:
-            ParameterName: !Ref SlackParameter
+            ParameterName: webhookUrl
       Events:
         SnsTopicEvent:
           Type: SNS
@@ -264,16 +264,6 @@ Resources:
         - Endpoint: 'https://events.pagerduty.com/integration/1ae375f43d114109d0e706a8795129a9/enqueue'
           Protocol: https
 
-  SlackParameter:
-    Type: AWS::SSM::Parameter
-    Properties:
-      Name: webhookUrl
-      Type: String
-      Value: https://hooks.slack.com/services/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
-      Description: SSM Parameter used by my lambda function to post cloudwatch alarms to slack.
-      Tags:
-        CloudResume: slackparameter
-
 Outputs:
   # ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
   # Find out more about other implicit resources you can reference within SAM
@@ -299,9 +289,6 @@ Outputs:
   AlarmSNSTopic:
     Description: ARN of Alarm SNS Topic
     Value: !Ref AlarmSNSTopic
-  SlackParameter:
-    Description: ARN of Slack Parameter
-    Value: !Ref SlackParameter
   StackCertificateArn:
     Description: Issued certificate
     Value: !Ref StackCertificate
