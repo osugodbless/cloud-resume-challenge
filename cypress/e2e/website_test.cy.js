@@ -1,6 +1,6 @@
 describe('website test', () => {
     beforeEach(() => {
-        cy.visit('http://127.0.0.1:5500/website-content/')
+        cy.visit('https://osu-resume.com.ng')
     })
 
     context('navigation section', () => {
