@@ -1,0 +1,50 @@
+name: Deploy to AWS, Test using Cypress
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  AWS_REGION : "us-east-1"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-deploy-test:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout (clone the repository)
+      uses: actions/checkout@v4
+
+    - name: Install node
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Install AWS SAM CLI
+      uses: aws-actions/setup-sam@v2
+      with:
+        use-installer: true
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: arn:aws:iam::544271161073:role/github-actions-deploy-role
+        aws-region: ${{ env.AWS_REGION }}
+
+    - run: sam build --use-container
+    - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
+
+    - name: Cypress test
+      uses: cypress-io/github-action@v6
+      with:
+        start: npx cypress run
