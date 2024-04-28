@@ -1,0 +1,28 @@
+# The workflow Creates static website using aws s3
+name: Sync website content to S3
+on:
+  push
+env:
+  BUCKET_NAME : "cloud-resume-website-v1"
+  AWS_REGION : "us-east-1"
+
+permissions:
+  id-token: write   # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+jobs:
+  S3PackageUpload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone the repository
+        uses: actions/checkout@v4
+
+      - name: Configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::544271161073:role/github-actions-s3sync-role
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Upload a file to AWS s3
+      - name:  Copy assets to s3
+        run: |
+          aws s3 sync ./website-content s3://${{ env.BUCKET_NAME }}/
