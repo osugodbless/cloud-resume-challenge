@@ -41,7 +41,7 @@ jobs:
         role-to-assume: arn:aws:iam::544271161073:role/github-actions-deploy-role
         aws-region: ${{ env.AWS_REGION }}
 
-    - run: sam build
+    - run: sam build --use-container
     - run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
 
     - name: Cypress test
