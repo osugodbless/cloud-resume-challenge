@@ -1,6 +1,6 @@
 # CLOUD RESUME CHALLENGE
 
-This project repository showcases the work I've done and skills I've gained after embarking on the cloud resume challenge.
+The cloud resume challenge is actually a challenge by [Forrest Brazeal](https://twitter.com/forrestbrazeal) to help people prepare for a job in the cloud industry. This project repository therefore showcases the work I've done and skills I've gained after embarking on the cloud resume challenge.
 
 ## Project Overview
 
