@@ -43,15 +43,13 @@ body {
 
 /* Navigation bar */
 nav {
-    position: sticky;
-    top: 0;
     height: 80px;
     background: #35424a;
     border-bottom:#5af073 3px solid;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 60px 50px 15px 100px;
+    padding: 60px 50px 15px 50px;
 }
 
 nav .logo {
@@ -105,6 +103,13 @@ nav .menu-btn i {
     #click:checked ~ .menu-btn i:before {
         content: "\f00d";
     }
+
+    nav {
+        width: auto;
+        position: sticky;
+        top: 0;
+        padding-left: 30px;
+    }
     
     nav ul {
         position: fixed;
@@ -117,6 +122,7 @@ nav .menu-btn i {
         text-align: center;
         transition: all 0.3s ease;
         margin-top: 50px;
+        padding-left: 0px;
     }
 
     #click:checked ~ ul {
@@ -124,7 +130,7 @@ nav .menu-btn i {
     }
 
     nav ul li {
-        margin: 40px 0;
+        margin: 35px 0;
     }
 
     nav ul li a {
@@ -215,7 +221,7 @@ article#main-col {
     float: left;
     width: 50%;
 }
-@media screen and (max-width: 600px) {
+@media (max-width: 600px) {
     aside#sidebar {
         width: 100%;
         margin-top: 10px;
@@ -361,12 +367,6 @@ article#main-col {
       margin-left: auto;
       margin-right: auto;
     }
-    body {
-        margin: 0;
-    }
-    section {
-        padding: 3rem 0 2rem;
-    }
 }
 /* end of Skills section */
 
@@ -482,22 +482,22 @@ p.practitioner-certification:hover {
     float: left;
     width: 50%;
     margin-left: 10%;
-    margin-right: -2%;
+    margin-right: 0px;
     
   }
 
   .customize {
-    width: 500px;
+    width: 85%;
     text-overflow: clip;
   }
 
   .customize2 {
-    width: 450px;
+    width: 85%;
   }
 
-  @media (max-width: 300px) {
+  @media (max-width: 600px) {
     .customize {
-      width: 100%;
+      width: 85%;
     }
   }
   
@@ -508,9 +508,9 @@ p.practitioner-certification:hover {
     clear: both;
   }
 
-  @media screen and (max-width: 400px) {
+  @media (max-width: 600px) {
     .tech-education {
-      width: 100%;
+      width: 85%;
     }
   }
 
