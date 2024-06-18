@@ -1,113 +1,126 @@
 describe('website test', () => {
     beforeEach(() => {
-        cy.visit('https://osu-resume.com.ng')
+        cy.visit('http://127.0.0.1:5501/cloud-resume-challenge/website-content-v2/index.html')
     })
 
-    context('navigation section', () => {
+    context('navigation tests', () => {
         it('The navigation links should exist, be clickable and be visible', () => {
             cy.getByData('home').should('exist').click().then(() => {
-                cy.contains('Godbless Lucky Osu...').should('be.visible');
+                cy.contains('Godbless Lucky Osu').should('be.visible');
               });
             cy.getByData('about').should('exist').click().then(() => {
-                cy.contains('About Me').should('be.visible');
+                cy.contains('Learn more about me').should('be.visible');
               });
-            cy.getByData('skills').should('exist').click().then(() => {
-                cy.contains('My Skillset').should('be.visible');
+            cy.getByData('resume').should('exist').click().then(() => {
+                cy.contains('Check My Resume').should('be.visible');
             });
-            cy.getByData('projects').should('exist').click().then(() => {
-                cy.contains('Projects').should('be.visible');
+            cy.getByData('certifications').should('exist').click().then(() => {
+                cy.contains('My Certifications').should('be.visible');
             });
-            cy.getByData('education').should('exist').click().then(() => {
-                cy.contains('Education & Certifications').should('be.visible');
+            cy.getByData('portfolio').should('exist').click().then(() => {
+                cy.contains('My Works').should('be.visible');
+            });
+            cy.getByData('blog').should('exist').click().then(() => {
+                cy.contains('My Blogs').should('be.visible');
             });
             cy.getByData('contact').should('exist').click().then(() => {
-                cy.contains('Get in touch').should('be.visible');
+                cy.contains('Get in touch').should('exist');
+            });
+            cy.getByData('mobile-nav-toggle').should('not.be.visible');
+        })
+
+        it('Desktop navigation should collapse on smaller screens', () => {
+            cy.viewport(980, 760)
+            cy.getByData('home').should('not.be.visible');
+            cy.getByData('about').should('not.be.visible');
+            cy.getByData('resume').should('not.be.visible');
+            cy.getByData('certifications').should('not.be.visible');
+            cy.getByData('portfolio').should('not.be.visible');
+            cy.getByData('blog').should('not.be.visible');
+            cy.getByData('contact').should('not.be.visible'); 
+        })
+
+        it('should display mobile navigation on smaller screens', () => {
+            cy.viewport(980, 760)
+            cy.getByData('mobile-nav-toggle').should('be.visible').click();
+            cy.getByData('navbar-ul').should('be.visible').within(() => {
+                cy.contains('Home');
+                cy.contains('About');
+                cy.contains('Resume');
+                cy.contains('Certifications');
+                cy.contains('Projects/Portfolio');
+                cy.contains('Blog');
+                cy.contains('Contact');
             });
         })
     })
 
-    context('Blog link', () => {
-        it('The BLOG navbar should be visible, have the current href and be clickeable', () => {
-            cy.getByData('blog-link')
+    context('Test for social icons', () => {
+        it('GitHub icon should be visible, and have the correct href', () => {
+            cy.getByData('github-icon')
+                .should('be.visible')
+                .should('have.attr', 'href', 'https://github.com/osugodbless')
+        })
+
+        it('LinkedIn icon should be visible, and have the correct href', () => {
+            cy.getByData('linkedin-icon')
+                .should('be.visible')
+                .should('have.attr', 'href', 'https://linkedin.com/in/osugodbless/')
+        })
+
+        it('Dev.to icon should be visible, and have the correct href', () => {
+            cy.getByData('devto-icon')
                 .should('be.visible')
                 .should('have.attr', 'href', 'https://dev.to/osugodbless')
-                .click()
+        })
+
+        it('Twitter (X) icon should be visible, and have the correct href', () => {
+            cy.getByData('x-icon')
+                .should('be.visible')
+                .should('have.attr', 'href', 'https://x.com/osugodbless')
         })
     })
 
-    context('Social icons', () => {
-        it('LinkedIn icon in the home section should be visible, have the current href and be clickeable', () => {
-            cy.getByData('home-section-linkedin-icon')
-                .should('be.visible')
-                .should('have.attr', 'href', 'https://linkedin.com/in/osugodbless/')
-                .click()
-        })
-
-        it('GitHub icon in the home section should be visible, have the current href and be clickeable', () => {
-            cy.getByData('home-section-github-icon')
-                .should('be.visible')
-                .should('have.attr', 'href', 'https://github.com/osugodbless')
-                .click()
-        })
-
-        it('LinkedIn icon in the footer section should be visible, have the current href and be clickeable', () => {
-            cy.getByData('footer-section-linkedin-icon')
-                .should('be.visible')
-                .should('have.attr', 'href', 'https://linkedin.com/in/osugodbless/')
-                .click()
-        })
-
-        it('GitHub icon in the footer section should be visible, have the current href and be clickeable', () => {
-            cy.getByData('footer-section-github-icon')
-                .should('be.visible')
-                .should('have.attr', 'href', 'https://github.com/osugodbless')
-                .click()
-        })
+    context('Certifications links test', () => {
+        it('navigate to the certifications section and make sure all certifications exist with their correct validation links', () => {
+            cy.getByData('certifications').should('exist').click().then(() => {
+                cy.getByData('certification-1').should('be.visible').should('have.attr', 'href', 'https://www.credly.com/badges/687dd48d-eeb7-4cf6-a468-6c572dc8776e/public_url').click();
+                cy.getByData('certification-2').should('be.visible').should('have.attr', 'href', 'https://www.credly.com/badges/b6ab4882-fa67-40fb-8a8d-62f804b7c27b/public_url').click();
+                cy.getByData('certification-3').should('be.visible').should('have.attr', 'href', 'https://drive.google.com/file/d/1C3TdJVuCT4DKgkB_sULk-nAnJGsxS34L/view?usp=sharing').click();
+            });
+                
+        })  
     })
 
-    context('Resume button', () => {
-        it('The resume link should have the current href and be clickeable', () => {
-            cy.getByData('resume-link')
-                .should('have.attr', 'href', 'https://drive.google.com/file/d/1CqwFwkbd555jWt4MeoLAL58-9ijfEEu5/view?usp=sharing')
+    context('Portfolio links test', () => {
+        it('navigate to the projects/portfolio section and make sure project-1 exist and the link to view its details is clickable', () => {
+            cy.getByData('portfolio').should('exist').click().then(() => {
+                cy.getByData('project-1').should('exist').should('have.attr', 'href', 'portfolio-details/portfolio-details-1.html').click().then(() => {
+                    cy.contains('Cloud Resume Challenge Project').should('exist');
+                });
+            });
+                
         })
-
-        it('The resume button should be visible, contain the correct title, and be clickeable', () => {
-            cy.getByData('resume-button')
-                .should('be.visible').contains('View Resume')
-                .click()
-        })
+        
+        it('navigate to the projects/portfolio section and make sure project-2 exist and the link to view its details is clickable', () => {
+            cy.getByData('portfolio').should('exist').click().then(() => {
+                cy.getByData('project-2').should('exist').should('have.attr', 'href', 'portfolio-details/portfolio-details-2.html').click().then(() => {
+                    cy.contains('TripPlanner App Design').should('exist');
+                });
+            });
+                
+        })  
     })
 
-    context('Projects', () => {
-        it('Cloud resume challenge project should be visible, have the correct href and be clickeable', () => {
-            cy.getByData('project-one')
-                .should('be.visible')
-                .should('have.attr', 'href', 'https://github.com/osugodbless/cloud-resume-challenge.git')
-                .click()
-        })
-
-        it('TripPlanner App project should be visible, have the correct href and be clickeable', () => {
-            cy.getByData('project-two')
-                .should('be.visible')
-                .should('have.attr', 'href', 'https://youtu.be/E6wFN9t78Yg')
-                .click()
-        })
+    context('Blog links test', () => {
+        it('navigate to the blog section and make sure all blog posts exist with their correct links', () => {
+            cy.getByData('blog').should('exist').click().then(() => {
+                cy.getByData('blog-1').should('be.visible').should('have.attr', 'href', 'https://dev.to/osugodbless/conquering-the-cloud-resume-challenge-my-journey-1lbe').click({multiple: true});
+                cy.getByData('blog-2').should('be.visible').should('have.attr', 'href', 'https://dev.to/osugodbless/deploy-a-static-website-using-amazon-s3-detailed-3hok').click({multiple: true});
+            });
+                
+        })  
     })
 
-    context('Certifications', () => {
-        it('AWS SAA certification be visible, have the correct href and be clickeable', () => {
-            cy.getByData('cloud-saa')
-                .should('be.visible')
-                .should('have.attr', 'href', 'https://aws.amazon.com/verification')
-                .click()
-        })
-
-        it('AWS practitioner certification should be visible, have the correct href and be clickeable', () => {
-            cy.getByData('cloud-practitioner')
-                .should('be.visible')
-                .should('have.attr', 'href', 'https://aws.amazon.com/verification')
-                .click()
-        })
-    })
 
 })

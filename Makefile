@@ -7,7 +7,7 @@ deploy-infra:
 	sam build && aws-vault exec Godbless --no-session -- sam deploy
 
 deploy-site:
-	aws-vault exec Godbless --no-session -- aws s3 sync ./website-content s3://cloud-resume-website-v1
+	aws-vault exec Godbless --no-session -- aws s3 sync ./website-content-v2 s3://cloud-resume-website-v1
 
 invoke-put:
 	sam build && aws-vault exec Godbless --no-session -- sam local invoke CountPutFunction
