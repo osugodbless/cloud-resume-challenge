@@ -87,6 +87,7 @@ describe('website test', () => {
                 cy.getByData('certification-1').should('be.visible').should('have.attr', 'href', 'https://www.credly.com/badges/687dd48d-eeb7-4cf6-a468-6c572dc8776e/public_url').click();
                 cy.getByData('certification-2').should('be.visible').should('have.attr', 'href', 'https://www.credly.com/badges/b6ab4882-fa67-40fb-8a8d-62f804b7c27b/public_url').click();
                 cy.getByData('certification-3').should('be.visible').should('have.attr', 'href', 'https://drive.google.com/file/d/1C3TdJVuCT4DKgkB_sULk-nAnJGsxS34L/view?usp=sharing').click();
+                cy.getByData('certification-4').should('be.visible').should('have.attr', 'href', 'https://www.credly.com/badges/a35a3466-541d-4494-bb77-f08e56d771da/public_url').click();
             });
                 
         })  
