@@ -17,6 +17,6 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "cypress": "^13.7.2",
-    "cypress-plugin-api": "^2.11.1"
+    "cypress-plugin-api": "^2.11.2"
   }
 }
