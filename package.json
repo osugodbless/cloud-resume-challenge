@@ -16,7 +16,7 @@
   "author": "\"Godbless Lucky Osu\"",
   "license": "Apache-2.0",
   "devDependencies": {
-    "cypress": "^13.7.2",
+    "cypress": "^13.14.1",
     "cypress-plugin-api": "^2.11.2"
   }
 }
