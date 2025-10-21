@@ -19,23 +19,23 @@ Globals:
 
 Parameters:
   DomainName:
-    Description: Apex domain
+    Description: Subdomain for portfolio site
     Type: String
-    Default: gocloud.com.ng
+    Default: portfolio.gocloud.com.ng
   
 Resources:
   MyWebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: cloud-resume-website-v1
+      BucketName: cloud-resume-website-v2
       PublicAccessBlockConfiguration:
           BlockPublicAcls: false
           BlockPublicPolicy: false
           IgnorePublicAcls: false
           RestrictPublicBuckets: false
       Tags:
-        - Key: CloudResume
-          Value: frontend
+        - Key: Name
+          Value: cloud-resume-challenge
 
   BucketPolicy:
     Type: AWS::S3::BucketPolicy
@@ -90,8 +90,8 @@ Resources:
           SslSupportMethod: 'sni-only'
           CloudFrontDefaultCertificate: true
       Tags:
-        - Key: CloudResume
-          Value: frontend
+        - Key: Name
+          Value: cloud-resume-challenge
 
   OriginAccessControl:
     Type: AWS::CloudFront::OriginAccessControl
@@ -187,7 +187,7 @@ Resources:
       SSESpecification:
         SSEEnabled: false
       Tags:
-        CloudResume: frontend
+        Name: cloud-resume-challenge
 
   LambdaGetErrorAlarm:
     Type: "AWS::CloudWatch::Alarm"
