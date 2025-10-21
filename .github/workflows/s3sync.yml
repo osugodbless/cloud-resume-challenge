@@ -3,7 +3,7 @@ name: Sync website content to S3
 on:
   push
 env:
-  BUCKET_NAME : "cloud-resume-website-v1"
+  BUCKET_NAME : "cloud-resume-website-v2"
   AWS_REGION : "us-east-1"
 
 permissions:
@@ -19,7 +19,7 @@ jobs:
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::544271161073:role/github-actions-s3sync-role
+          role-to-assume: arn:aws:iam::126043786578:role/github-actions-s3sync-role
           aws-region: ${{ env.AWS_REGION }}
 
       # Upload a file to AWS s3
