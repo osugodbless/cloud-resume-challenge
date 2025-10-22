@@ -1,6 +1,6 @@
 describe('website test', () => {
     beforeEach(() => {
-        cy.visit('https://d1wgptoysuf2z7.cloudfront.net/')
+        cy.visit('portfolio.gocloud.com.ng')
     })
 
     context('navigation tests', () => {
