@@ -88,7 +88,6 @@ Resources:
           AcmCertificateArn: !Ref StackCertificate
           MinimumProtocolVersion: 'TLSv1.2_2021'
           SslSupportMethod: 'sni-only'
-          CloudFrontDefaultCertificate: true
       Tags:
         - Key: Name
           Value: cloud-resume-challenge
