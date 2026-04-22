@@ -1,10 +1,10 @@
 # The workflow Creates static website using aws s3
-name: Sync website content to S3
-on:
-  push
-env:
-  BUCKET_NAME : "cloud-resume-website-v2"
-  AWS_REGION : "us-east-1"
+# name: Sync website content to S3
+# on:
+#   push
+# env:
+#   BUCKET_NAME : "cloud-resume-website-v2"
+#   AWS_REGION : "us-east-1"
 
 permissions:
   id-token: write   # This is required for requesting the JWT
