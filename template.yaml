@@ -106,7 +106,7 @@ Resources:
   Route53RecordSet:
     Type: AWS::Route53::RecordSet
     Properties:
-      HostedZoneId: Z06539222MSUYFZCVVI3P
+      HostedZoneId: Z101911431POAUJIP06N9
       Name: !Sub '${DomainName}'
       Type: 'A'
       AliasTarget:
@@ -120,7 +120,7 @@ Resources:
       DomainName: !Sub '${DomainName}'
       DomainValidationOptions:
         - DomainName: !Sub '${DomainName}'
-          HostedZoneId: Z06539222MSUYFZCVVI3P
+          HostedZoneId: Z101911431POAUJIP06N9
       ValidationMethod: DNS
 
   CountGetFunction:
