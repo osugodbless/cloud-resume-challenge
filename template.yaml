@@ -21,7 +21,7 @@ Parameters:
   DomainName:
     Description: Subdomain for portfolio site
     Type: String
-    Default: portfolio.gocloud.com.ng
+    Default: resume.gocloud.com.ng
   
 Resources:
   MyWebsiteBucket:
