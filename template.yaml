@@ -27,7 +27,6 @@ Resources:
   MyWebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: cloud-resume-website-v2
       PublicAccessBlockConfiguration:
           BlockPublicAcls: false
           BlockPublicPolicy: false
