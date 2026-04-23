@@ -67,6 +67,14 @@ h6 {
   overflow-y: auto;
 }
 
+/* #header .container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 100%;           
+  position: relative;
+} */
+
 #header * {
   transition: ease-in-out 0.3s;
 }
@@ -82,21 +90,27 @@ h6 {
 
 #header h1 a,
 #header h1 a:hover {
-  color: #fff;
+  color: #faaf0e;
   line-height: 1;
   display: inline-block;
+}
+
+#header p {
+  font-family: "Raleway", sans-serif;
 }
 
 #header h2 {
   font-size: 24px;
   margin-top: 20px;
   color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 15px;
 }
 
 #header h2 span {
   color: #fff;
   border-bottom: 2px solid #18d26e;
-  padding-bottom: 6px;
+  padding-bottom: 8px;
+  margin-bottom: 20px;
 }
 
 #header img {
@@ -145,6 +159,7 @@ h6 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
   }
 }
 
@@ -159,11 +174,12 @@ h6 {
 }
 
 #header.header-top .social-links,
-#header.header-top h2 {
+#header.header-top h2, #header.header-top p {
   display: none;
 }
 
 #header.header-top h1 {
+  order: 1;
   margin-right: auto;
   font-size: 36px;
 }
@@ -179,6 +195,7 @@ h6 {
 }
 
 #header.header-top .navbar {
+  order: 2;
   margin: 0;
 }
 
@@ -200,7 +217,8 @@ h6 {
 */
 .navbar {
   padding: 0;
-  margin-top: 35px;
+  /* margin-top: 35px; */
+  margin-bottom: 35px;
 }
 
 .navbar ul {
@@ -828,11 +846,11 @@ section .container {
   bottom: 30px;
   transition: all ease-in-out 0.3s;
   z-index: 2;
-  opacity: 0;
+  opacity: 1;
 }
 
 .portfolio .portfolio-wrap .portfolio-info {
-  opacity: 0;
+  opacity: 1;
   position: absolute;
   top: 0;
   left: 0;

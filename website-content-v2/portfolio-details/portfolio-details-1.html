@@ -41,29 +41,21 @@
   <main id="main">
 
     <!-- ======= Portfolio Details ======= -->
-
-    <!-- ======= Portfolio 1 ======= -->
+    
+    <!-- ======= Portfolio 2 ======= -->
     <div id="portfolio-details" class="portfolio-details">
       <div class="container">
 
         <div class="row">
 
           <div class="col-lg-8">
-            <h2 class="portfolio-title">Cloud Resume Challenge Project</h2>
+            <h2 class="portfolio-title">Ascii Art Web</h2>
 
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="../assets/img/portfolio-details/resume-challenge/resume-challenge-1.png" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="../assets/img/portfolio-details/resume-challenge/resume-challenge-2.png" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="../assets/img/portfolio-details/resume-challenge/resume-challenge-3.png" alt="">
+                  <img src="../assets/img/portfolio-details/asciiartweb/ascii_detail.png" alt="">
                 </div>
 
               </div>
@@ -75,23 +67,21 @@
           <div class="col-lg-4 portfolio-info">
             <h3>Project information</h3>
             <ul>
-              <li><strong>Category</strong>: Cloud &amp; DevOps</li>
-              <li><strong>Project Repository</strong>: <a href="https://github.com/osugodbless/cloud-resume-challenge.git" target="_blank">Click Here</a></li>
-              <li><strong>Project Live URL</strong>: <a href="https://osu-resume.com.ng" target="_blank">https://osu-resume.com.ng</a></li>
-              <li><strong>Project date</strong>: March 04, 2024 - April 02, 2024</li>
+              <li><strong>Category</strong>: Backend Development (Go)</li>
+              <li><strong>Project Repository</strong>: <a href="https://github.com/osugodbless/ascii-art-web" target="_blank">Click Here</a></li>
             </ul>
 
             <p>
-              Demonstrated proficiency in AWS services and DevOps principles through the successful completion of the Cloud Resume Challenge Project, building a secure website with global accessibility, implementing CI/CD, and utilizing serverless technologies for backend development.
+              <strong>Description:</strong> A highly responsive web application written in Go that dynamically parses and converts user text into stylized ASCII art representations.
               <br><br>
-              <strong>Technologies:</strong> Amazon S3, Lambda, API Gateway, DynamoDB, AWS SAM, Route 53, Certificate Manager, CloudFront, SNS, SSM, CloudWatch, Github Actions, Cypress, Slack
+              <strong>Details:</strong> Built a custom HTTP server and routing logic from scratch using Go’s standard library. Implemented efficient file handling, complex string manipulation algorithms, and dynamic HTML template rendering to process requests in real-time. Prioritized clean architecture, secure input validation, and rigorous error handling to deliver a resilient, production-ready backend service.
             </p>
           </div>
 
         </div>
 
       </div>
-    </div><!-- End Portfolio 1-->
+    </div><!-- End Portfolio 2 -->
 
     <!-- End Portfolio Details -->
 
@@ -103,14 +93,14 @@
     <!-- Licensing information: https://bootstrapmade.com/license/ -->
     <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/personal-free-resume-bootstrap-template/ -->
     <p>Visitor Count: <div id="visitorCount"></div></p>
-    Godbless 2024. Adapted from <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a> template
+    Godbless &copy; 2026. Adapted from <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a> template
   </div>
 
   <script>
-    fetch('https://ryjqiza7hl.execute-api.us-east-1.amazonaws.com/Prod/post-count', {
+    fetch('https://fustyrtx8a.execute-api.us-east-1.amazonaws.com/Prod/post-count', {
         method: 'POST',
     })
-    .then(() => fetch('https://ryjqiza7hl.execute-api.us-east-1.amazonaws.com/Prod/get-count'))
+    .then(() => fetch('https://fustyrtx8a.execute-api.us-east-1.amazonaws.com/Prod/get-count'))
     .then(response => {
         if (!response.ok) {
             throw new Error('Failed to fetch visitor count');

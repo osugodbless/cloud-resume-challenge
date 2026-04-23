@@ -41,29 +41,21 @@
   <main id="main">
 
     <!-- ======= Portfolio Details ======= -->
-    
-    <!-- ======= Portfolio 2 ======= -->
+
+    <!-- ======= Portfolio 1 ======= -->
     <div id="portfolio-details" class="portfolio-details">
       <div class="container">
 
         <div class="row">
 
           <div class="col-lg-8">
-            <h2 class="portfolio-title">TripPlanner App Design</h2>
+            <h2 class="portfolio-title">Cloud Resume Challenge</h2>
 
             <div class="portfolio-details-slider swiper">
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="../assets/img/portfolio-details/app/app-design-1.png" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="../assets/img/portfolio-details/app/app-design-2.png" alt="">
-                </div>
-
-                <div class="swiper-slide">
-                  <img src="../assets/img/portfolio-details/app/app-design-3.png" alt="">
+                  <img src="../assets/img/portfolio-details/resume-challenge/resume-challenge-1.png" alt="">
                 </div>
 
               </div>
@@ -75,22 +67,23 @@
           <div class="col-lg-4 portfolio-info">
             <h3>Project information</h3>
             <ul>
-              <li><strong>Category</strong>: Others</li>
-              <li><strong>Project Presentation Deck</strong>: <a href="https://docs.google.com/presentation/d/13e0arS-1g1AVxQLL_lVDj2eamPAtx1U0/edit?usp=drive_link&ouid=105060843571414778806&rtpof=true&sd=true" target="_blank">Click Here</a></li>
-              <li><strong>Project date</strong>: June 23, 2023 - July 17, 2023</li>
+              <li><strong>Category</strong>: Cloud Architecture / Backend</li>
+              <li><strong>Project Repository</strong>: <a href="https://github.com/osugodbless/cloud-resume-challenge.git" target="_blank">Click Here</a></li>
+              <li><strong>Project Live URL</strong>: <a href="https://resume.gocloud.com.ng" target="_blank">https://resume.gocloud.com.ng</a></li>
+              <li><strong>Project date</strong>: March 04, 2024 - April 02, 2024</li>
             </ul>
 
             <p>
-              Led a team at ALX to simulate the development of a transportation solution app, gaining valuable experience in teamwork, project management, and problem-solving skills. <br><br> Acting as the the team's UX Researcher and UI/UX Designer, I carefully designed questionnaires for user interviews aimed at understanding user behaviors, needs and preferences. I gathered insights and designed the user interface to be aesthetically pleasing and user-friendly, while also considering the user experience to ensure seamless interactions and intuitive navigation.
+              <strong>Description:</strong> Architected and deployed a highly available, serverless web application using AWS infrastructure-as-code principles.
               <br><br>
-              <strong>Technologies:</strong> Miro, Google Workspace, YouTube, Loom
+              <strong>Details:</strong> Built the backend API using AWS API Gateway, AWS Lambda (Python), and DynamoDB to track visitor metrics. Designed a secure, globally distributed frontend utilizing Amazon S3, CloudFront, and Route 53, fully automated with a CI/CD pipeline via GitHub Actions.
             </p>
           </div>
 
         </div>
 
       </div>
-    </div><!-- End Portfolio 2 -->
+    </div><!-- End Portfolio 1-->
 
     <!-- End Portfolio Details -->
 
@@ -102,14 +95,14 @@
     <!-- Licensing information: https://bootstrapmade.com/license/ -->
     <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/personal-free-resume-bootstrap-template/ -->
     <p>Visitor Count: <div id="visitorCount"></div></p>
-    Godbless 2024. Adapted from <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a> template
+    Godbless &copy; 2026. Adapted from <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a> template
   </div>
 
-  <script>
-    fetch('https://ryjqiza7hl.execute-api.us-east-1.amazonaws.com/Prod/post-count', {
+ <script>
+    fetch('https://fustyrtx8a.execute-api.us-east-1.amazonaws.com/Prod/post-count', {
         method: 'POST',
     })
-    .then(() => fetch('https://ryjqiza7hl.execute-api.us-east-1.amazonaws.com/Prod/get-count'))
+    .then(() => fetch('https://fustyrtx8a.execute-api.us-east-1.amazonaws.com/Prod/get-count'))
     .then(response => {
         if (!response.ok) {
             throw new Error('Failed to fetch visitor count');
