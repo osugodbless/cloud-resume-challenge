@@ -97,7 +97,7 @@ describe('website test', () => {
         it('navigate to the projects/portfolio section and make sure project-1 exist and the link to view its details is clickable', () => {
             cy.getByData('portfolio').should('exist').click().then(() => {
                 cy.getByData('project-1').should('exist').should('have.attr', 'href', 'portfolio-details/portfolio-details-1.html').click().then(() => {
-                    cy.contains('Cloud Resume Challenge Project').should('exist');
+                    cy.contains('Ascii Art Web').should('exist');
                 });
             });
                 
@@ -106,7 +106,7 @@ describe('website test', () => {
         it('navigate to the projects/portfolio section and make sure project-2 exist and the link to view its details is clickable', () => {
             cy.getByData('portfolio').should('exist').click().then(() => {
                 cy.getByData('project-2').should('exist').should('have.attr', 'href', 'portfolio-details/portfolio-details-2.html').click().then(() => {
-                    cy.contains('TripPlanner App Design').should('exist');
+                    cy.contains('Cloud Resume Challenge').should('exist');
                 });
             });
                 
