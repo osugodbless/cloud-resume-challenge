@@ -5,8 +5,8 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Portfolio Details</title>
-  <meta content="" name="description">
+  <title>Cloud Resume Challenge | Godbless Lucky Osu</title>
+  <meta content="How the Cloud Resume Challenge site counts visitors and deploys itself with AWS SAM, Lambda, DynamoDB, CloudFront, and GitHub Actions." name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
@@ -20,7 +20,6 @@
   <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="../assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
@@ -46,6 +45,8 @@
     <div id="portfolio-details" class="portfolio-details">
       <div class="container">
 
+        <a class="portfolio-back" href="../index.html#portfolio"><i class="bi bi-arrow-left" aria-hidden="true"></i> Back to projects</a>
+
         <div class="row">
 
           <div class="col-lg-8">
@@ -55,7 +56,7 @@
               <div class="swiper-wrapper align-items-center">
 
                 <div class="swiper-slide">
-                  <img src="../assets/img/portfolio-details/resume-challenge/resume-challenge-1.png" alt="">
+                  <img src="../assets/img/portfolio-details/resume-challenge/resume-challenge-1.png" alt="Cloud Resume Challenge architecture diagram">
                 </div>
 
               </div>
@@ -67,16 +68,16 @@
           <div class="col-lg-4 portfolio-info">
             <h3>Project information</h3>
             <ul>
-              <li><strong>Category</strong>: Cloud Architecture / Backend</li>
-              <li><strong>Project Repository</strong>: <a href="https://github.com/osugodbless/cloud-resume-challenge.git" target="_blank">Click Here</a></li>
-              <li><strong>Project Live URL</strong>: <a href="https://resume.gocloud.com.ng" target="_blank">https://resume.gocloud.com.ng</a></li>
-              <li><strong>Project date</strong>: March 04, 2024 - April 02, 2024</li>
+              <li><strong>Category</strong>: Serverless architecture</li>
+              <li><strong>Source code</strong>: <a href="https://github.com/osugodbless/cloud-resume-challenge" target="_blank" rel="noopener">View on GitHub</a></li>
+              <li><strong>Live site</strong>: <a href="https://resume.gocloud.com.ng" target="_blank" rel="noopener">resume.gocloud.com.ng</a></li>
+              <li><strong>Built</strong>: March - April 2024</li>
             </ul>
 
             <p>
-              <strong>Description:</strong> Architected and deployed a highly available, serverless web application using AWS infrastructure-as-code principles.
+              <strong>What it is:</strong> A resume site that counts every visit and deploys itself. The page you are reading is the result.
               <br><br>
-              <strong>Details:</strong> Built the backend API using AWS API Gateway, AWS Lambda (Python), and DynamoDB to track visitor metrics. Designed a secure, globally distributed frontend utilizing Amazon S3, CloudFront, and Route 53, fully automated with a CI/CD pipeline via GitHub Actions.
+              <strong>How it works:</strong> The visitor counter runs on API Gateway, Lambda, and DynamoDB. The frontend is served from S3 through CloudFront on a Route 53 domain. GitHub Actions deploys both the stack and the site using OIDC, so no long-lived AWS keys are stored. Cypress checks the live site after each deploy.
             </p>
           </div>
 
@@ -121,8 +122,6 @@
   <!-- Vendor JS Files -->
   <script src="../assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="../assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="../assets/vendor/php-email-form/validate.js"></script>

@@ -18,7 +18,7 @@ describe('website test', () => {
                 cy.contains('My Certifications').should('be.visible');
             });
             cy.getByData('portfolio').should('exist').click().then(() => {
-                cy.contains('My Works').should('be.visible');
+                cy.contains('Selected work').should('be.visible');
             });
             cy.getByData('blog').should('exist').click().then(() => {
                 cy.contains('My Blogs').should('be.visible');
@@ -48,7 +48,7 @@ describe('website test', () => {
                 cy.contains('About');
                 cy.contains('Resume');
                 cy.contains('Certifications');
-                cy.contains('Projects/Portfolio');
+                cy.contains('Projects');
                 cy.contains('Blog');
                 cy.contains('Contact');
             });
@@ -94,23 +94,16 @@ describe('website test', () => {
     })
 
     context('Portfolio links test', () => {
-        it('navigate to the projects/portfolio section and make sure project-1 exist and the link to view its details is clickable', () => {
+        it('shows the three projects with working source links', () => {
             cy.getByData('portfolio').should('exist').click().then(() => {
-                cy.getByData('project-1').should('exist').should('have.attr', 'href', 'portfolio-details/portfolio-details-1.html').click().then(() => {
-                    cy.contains('Ascii Art Web').should('exist');
-                });
+                cy.contains('Kweeks').should('exist');
+                cy.contains('Cloud Resume Challenge').should('exist');
+                cy.contains('Forum Backend').should('exist');
+                cy.getByData('project-1').should('have.attr', 'href', 'https://github.com/osugodbless/kweeks');
+                cy.getByData('project-2').should('have.attr', 'href', 'https://github.com/osugodbless/cloud-resume-challenge');
+                cy.getByData('project-3').should('have.attr', 'href', 'https://github.com/osugodbless/forum-backend');
             });
-                
         })
-        
-        it('navigate to the projects/portfolio section and make sure project-2 exist and the link to view its details is clickable', () => {
-            cy.getByData('portfolio').should('exist').click().then(() => {
-                cy.getByData('project-2').should('exist').should('have.attr', 'href', 'portfolio-details/portfolio-details-2.html').click().then(() => {
-                    cy.contains('Cloud Resume Challenge').should('exist');
-                });
-            });
-                
-        })  
     })
 
     context('Blog links test', () => {

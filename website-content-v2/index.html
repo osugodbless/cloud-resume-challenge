@@ -23,7 +23,6 @@
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
@@ -51,7 +50,7 @@
           <li data-test="about"><a class="nav-link" href="#about">About</a></li>
           <li data-test="resume"><a class="nav-link" href="#resume">Resume</a></li>
           <li data-test="certifications"><a class="nav-link" href="#certifications">Certifications</a></li>
-          <li data-test="portfolio"><a class="nav-link" href="#portfolio">Projects/Portfolio</a></li>
+          <li data-test="portfolio"><a class="nav-link" href="#portfolio">Projects</a></li>
           <li data-test="blog"><a class="nav-link" href="#blogs">Blog</a></li>
           <li data-test="contact"><a class="nav-link" href="#contact">Contact</a></li>
         </ul>
@@ -180,9 +179,9 @@
           </div>
 
           <div class="progress">
-            <span class="skill">AWS Serverless <i class="val">85%</i></span>
+            <span class="skill">AWS <i class="val">60%</i></span>
             <div class="progress-bar-wrap">
-              <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+              <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
           </div>
 
@@ -595,50 +594,38 @@
     <div class="container">
 
       <div class="section-title">
-        <h2>Projects/Portfolio</h2>
-        <p>My Works</p>
+        <h2>Projects</h2>
+        <p>Selected work</p>
       </div>
 
-      <div class="row">
-        <div class="col-lg-12 d-flex justify-content-center">
-          <ul id="portfolio-flters">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-backend">Backend</li>
-            <li data-filter=".filter-cloud">Cloud &amp; DevOps</li>
-            <li data-filter=".filter-others">Others</li>
-          </ul>
-        </div>
-      </div>
+      <div class="project-list">
 
-      <div class="row portfolio-container">
-    
-        <div class="col-lg-4 col-md-6 portfolio-item filter-backend">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/ascii_logo.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Ascii Art Web</h4>
-              <p>Backend</p>
-              <div class="portfolio-links">
-                <!-- <a href="assets/img/portfolio/ascii_logo.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Ascii Logo"><i class="bx bx-plus"></i></a> -->
-                <a data-test="project-1" href="portfolio-details/portfolio-details-1.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details">Link<i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
+        <article class="project-entry">
+          <h3>Kweeks</h3>
+          <p class="project-kind">Real-time · Go</p>
+          <p class="project-summary">Instructors host live quiz rounds and players compete for pooled prizes, with a WebSocket hub handling live scoring and winner payouts.</p>
+          <p class="project-stack">Go · PostgreSQL · gorilla/websocket · go-ethereum</p>
+          <a data-test="project-1" class="project-link" href="https://github.com/osugodbless/kweeks" target="_blank" rel="noopener">View source code <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+        </article>
 
-        <div class="col-lg-4 col-md-6 portfolio-item filter-cloud">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/cloud-resume-challenge-architecture.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Cloud Resume Challenge</h4>
-              <p>Cloud/Backend</p>
-              <div class="portfolio-links">
-                <!-- <a href="assets/img/portfolio/cloud-resume-challenge-architecture.png" data-gallery="portfolioGallery" class="portfolio-lightbox" title="Architecture"><i class="bx bx-plus"></i></a> -->
-                <a data-test="project-2" href="portfolio-details/portfolio-details-2.html" data-gallery="portfolioDetailsGallery" data-glightbox="type: external" class="portfolio-details-lightbox" title="Portfolio Details">Link<i class="bx bx-link"></i></a>
-              </div>
-            </div>
+        <article class="project-entry">
+          <h3>Cloud Resume Challenge</h3>
+          <p class="project-kind">Serverless · AWS</p>
+          <p class="project-summary">This site: a serverless portfolio with a live visitor counter, deployed from one AWS SAM template with keyless CI/CD.</p>
+          <p class="project-stack">AWS SAM · Lambda · DynamoDB · CloudFront · Cypress</p>
+          <div class="project-actions">
+            <a data-test="project-2" class="project-link" href="https://github.com/osugodbless/cloud-resume-challenge" target="_blank" rel="noopener">View source code <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+            <a class="project-link project-link-secondary" href="portfolio-details/portfolio-details-2.html">Read the full breakdown</a>
           </div>
-        </div>
+        </article>
+
+        <article class="project-entry">
+          <h3>Forum Backend</h3>
+          <p class="project-kind">API · Go · In development</p>
+          <p class="project-summary">Discussion API with accounts, categories, posts, nested comments, and reactions, modeled across three PostgreSQL schemas.</p>
+          <p class="project-stack">Go · PostgreSQL · HTTP API · SQL migrations</p>
+          <a data-test="project-3" class="project-link" href="https://github.com/osugodbless/forum-backend" target="_blank" rel="noopener">View source code <i class="bi bi-arrow-up-right" aria-hidden="true"></i></a>
+        </article>
 
       </div>
 
@@ -784,8 +771,6 @@
   <!-- Vendor JS Files -->
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
